@@ -1,6 +1,6 @@
 # DGNNFlow
 
-This repository contains implementation for *DGNNFlow*, a novel streaming dataflow architecture for real-time edge-based dynamic GNN inference.
+This repository contains implementation for *DGNNFlow*, a novel streaming dataflow architecture for real-time edge-based dynamic GNN inference, including but not limited to HL-LHC Trigger Systems.
 The dataflow architecture of DGNNFlow is shown in the following diagram.
 
 ![DGNNFlow_Architecture](DGNNFlow.png)
