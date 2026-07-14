@@ -5,6 +5,11 @@ The dataflow architecture of DGNNFlow is shown in the following diagram.
 
 ![DGNNFlow_Architecture](DGNNFlow.png)
 
+Configurable parameters:
+* Number of Enhanced MP Units.
+* Number of NT Units.
+* Depths of FIFOs.
+
 This repository contains two main directories:
 1. DGNNFlow_HW/: this directory contains necessary files for implementation and use of DGNNFlow hardware architecture.
 2. L1DeepMETv2_SW/: this directory contains necessary files for implementation and use of L1DeepMETv2 software model.
