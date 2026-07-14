@@ -6,9 +6,9 @@ The dataflow architecture of DGNNFlow is shown in the following diagram.
 ![DGNNFlow_Architecture](DGNNFlow.png)
 
 Configurable parameters:
-* Number of Enhanced MP Units.
-* Number of NT Units.
-* Depths of FIFOs.
+* Number of Enhanced MP Units (configure EDGE_PARALLEL in DGNNFlow_HW/src/dcl.hpp).
+* Number of NT Units (configure NODE_PARALLEL in DGNNFlow_HW/src/dcl.hpp).
+* Depths of FIFOs (configure in DGNNFlow_HW/src/edge_conv.cpp).
 
 This repository contains two main directories:
 1. DGNNFlow_HW/: this directory contains necessary files for implementation and use of DGNNFlow hardware architecture.
