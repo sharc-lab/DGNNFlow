@@ -19,10 +19,8 @@ This repository contains two main directories:
 Structure of this directory for DGNNFlow architecture is as below:
 * src/: this directory contains design source code for DGNNFlow.
 * testbench/: this directory contains testbench code for DGNNFlow along with DELPHES weights for inference.
-* edge_conv_compute_kernel.xclbin: this file is FPGA executable file of DGNNFlow architecture.
 * Makefile: this file contains commands for compilation, linking, emulation, and complete execution of host-FPGA application for DGNNFlow.
-* LatencyStats.csv: this CSV file contains statistics for FPGA latency benchmarking.
-* Remaining files: these contain configuration and tracing files.
+* Remaining files: these contain configuration files.
 
 ## L1DeepMETv2_SW
 
