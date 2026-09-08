@@ -1,18 +1,18 @@
 # DGNNFlow
 
-This repository contains implementation for *DGNNFlow*, a novel streaming dataflow architecture for real-time edge-based dynamic GNN inference, including but not limited to HL-LHC Trigger Systems.
+This repository contains implementation for *DGNNFlow*, a novel streaming dataflow architecture for real-time edge-based dynamic GNN inference, including but not limited to the HL-LHC Trigger Systems.
 The dataflow architecture of DGNNFlow is shown in the following diagram.
 
 ![DGNNFlow_Architecture](DGNNFlow.png)
 
 Configurable parameters:
-* Number of Enhanced MP Units (configurable via EDGE_PARALLEL in DGNNFlow_HW/src/dcl.hpp).
-* Number of NT Units (configurable via NODE_PARALLEL in DGNNFlow_HW/src/dcl.hpp).
-* Depths of FIFOs (configurable in DGNNFlow_HW/src/edge_conv.cpp).
+* Number of Enhanced MP Units (configurable via EDGE_PARALLEL in DGNNFlow_HW/src/dcl.hpp file).
+* Number of NT Units (configurable via NODE_PARALLEL in DGNNFlow_HW/src/dcl.hpp file).
+* Depths of FIFOs (configurable in DGNNFlow_HW/src/edge_conv.cpp file).
 
 This repository contains two main directories:
-1. DGNNFlow_HW/: this directory contains necessary files for implementation and use of DGNNFlow hardware architecture.
-2. L1DeepMETv2_SW/: this directory contains necessary files for implementation and use of L1DeepMETv2 software model.
+1. DGNNFlow_HW/: this directory contains necessary files for DGNNFlow hardware architecture.
+2. L1DeepMETv2_SW/: this directory contains necessary files for L1DeepMETv2 software model.
 
 ## DGNNFlow_HW
 
