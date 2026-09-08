@@ -21,12 +21,13 @@ Structure of this directory for DGNNFlow architecture is as below:
 * testbench/: this directory contains testbench code for DGNNFlow along with DELPHES weights for inference.
 * edge_conv_compute_kernel.xclbin: this file is FPGA executable file of DGNNFlow architecture.
 * Makefile: this file contains commands for compilation, linking, emulation, and complete execution of host-FPGA application for DGNNFlow.
-* LatencyStats.csv: this CSV file contains statistics for FPGA latency benchmarking.
-* Remaining files: these contain configuration and tracing files.
+* LatencyStats.csv: this CSV file contains statistics from FPGA latency benchmarking.
+* Remaining files: these contain configuration, tracing, and supplementary files.
 
 ## L1DeepMETv2_SW
 
 Structure of this directory for L1DeepMETv2 model is as below:
 * L1DeepMETv2/: this directory contains source code of L1DeepMETv2 PyTorch model.
 * weights_files_Delphes/: this directory contains DELPHES weights for inference.
-* Remaining files: these contain source code and compiled code for L1DeepMETv2 C++ model and Python binding.
+* bench/: this directory contains statistics from GPU latency benchmarking.
+* Remaining files: these contain source code and compiled code for L1DeepMETv2 C++ model and Python binding, other supplementary files.
