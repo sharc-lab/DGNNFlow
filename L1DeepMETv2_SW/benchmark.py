@@ -141,7 +141,7 @@ def build_net(device: torch.device, is_delphes: bool) -> torch.nn.Module:
 
     import model.net as net
 
-    model = net.Net(continuous_dim=6, categorical_dim=2, norm=norm, is_delphes=False)
+    model = net.Net(continuous_dim=6, categorical_dim=2, norm=norm, is_delphes=is_delphes)
     model.to(device)
     model.eval()
     return model
@@ -151,57 +151,11 @@ def build_net(device: torch.device, is_delphes: bool) -> torch.nn.Module:
 # Data prep
 # -----------------------------
 
-def prepare_delphes_input(x):
-    x = x.detach().clone().cpu()
-
-    if x.ndim != 2 or x.shape[1] != 8 or x.shape[0] == 0:
-        raise ValueError(f"Expected nonempty [N, 8], got {tuple(x.shape)}")
-
-    if not torch.isfinite(x).all():
-        raise ValueError("Input contains NaN or Inf")
-
-    cat = x[:, 6:8]
-    if not torch.equal(cat, cat.round()):
-        raise ValueError("PDG and charge must be integer-valued")
-
-    if not torch.isin(
-        x[:, 7], x.new_tensor([-1, 0, 1])
-    ).all():
-        raise ValueError("Charge must be -1, 0, or 1")
-
-    raw_pdg = x[:, 6].abs()
-    new_pdg = torch.full_like(raw_pdg, -1)
-
-    mapping = {
-        0: 1,
-        6: 2,
-        11: 11,
-        13: 13,
-        22: 22,
-        45: 130,
-        65: 211,
-    }
-
-    for old, new in mapping.items():
-        new_pdg[raw_pdg == old] = new
-
-    bad = new_pdg < 0
-    if bad.any():
-        raise ValueError(
-            f"Unexpected Delphes PDGs: "
-            f"{torch.unique(raw_pdg[bad]).tolist()}"
-        )
-
-    x[:, 6] = new_pdg
-    return x
-
 def prefetch_graphs(test_dl, num_needed: int) -> List[Dict[str, torch.Tensor]]:
 
     graphs: List[Dict[str, torch.Tensor]] = []
     for data in test_dl:
-        # x = data.x.detach().clone().cpu()
-        x = prepare_delphes_input(data.x)
-        
+        x = data.x.detach().clone().cpu()
         graphs.append({"x": x})
         if len(graphs) >= num_needed:
             break
@@ -433,7 +387,7 @@ def main() -> None:
     ap.add_argument("--include_d2h", type=int, default=1, help="Include D2H(output) time in transfer on GPU")
     ap.add_argument("--run_cpu", type=int, default=1, help="Run CPU backends")
     ap.add_argument("--run_gpu", type=int, default=1, help="Run GPU backends (requires CUDA)")
-    ap.add_argument("--run_compile", type=int, default=0, help="Also run torch.compile variants")
+    ap.add_argument("--run_compile", type=int, default=1, help="Also run torch.compile variants")
     ap.add_argument("--outdir", type=str, default="bench_out", help="Output directory")
 
     args = ap.parse_args()
@@ -450,7 +404,7 @@ def main() -> None:
         data_dir=args.data_dir,
         batch_size=1,
         validation_split=0.2,
-        is_delphes=True,
+        is_delphes=bool(args.is_delphes),
     )
     test_dl = dataloaders["test"]
 
