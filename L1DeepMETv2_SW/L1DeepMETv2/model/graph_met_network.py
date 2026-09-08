@@ -45,10 +45,8 @@ class GraphMETNetwork(nn.Module):
                                     nn.ELU(),
                                     nn.Linear(hidden_dim//2, output_dim)
                                    )
-        if is_delphes:
-            self.pdgs = [0, 6, 11, 13, 22, 45, 65]
-        else:
-            self.pdgs = [1, 2, 11, 13, 22, 130, 211]
+
+        self.pdgs = [1, 2, 11, 13, 22, 130, 211]
 
     def forward(self, x_cont, x_cat, edge_index, batch):
         # Normalize the input values within [0,1] range: pt, px, py, eta, phi, puppiWeight, pdgId, charge

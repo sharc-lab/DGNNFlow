@@ -5,7 +5,7 @@
  *
  * Declaration of Weight/Parameter Vectors for L1DeepMetv2
  */
-int pdgs[NUM_PDGS] = {0, 6, 11, 13, 22, 45, 65};
+int pdgs[NUM_PDGS] = {1, 2, 11, 13, 22, 130, 211};
 WT_TYPE EPSILON = 0.00001;
 WT_TYPE norm[NUM_CONT_FEAT] = {1.0 / 128, 1.0 / 128, 1.0 / 128, 1.0, 1.0, 1.0};
 
