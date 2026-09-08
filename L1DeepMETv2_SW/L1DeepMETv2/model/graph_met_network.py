@@ -45,6 +45,7 @@ class GraphMETNetwork(nn.Module):
                                     nn.ELU(),
                                     nn.Linear(hidden_dim//2, output_dim)
                                    )
+
         if is_delphes:
             self.pdgs = [0, 6, 11, 13, 22, 45, 65]
         else:
